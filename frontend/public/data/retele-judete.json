@@ -1,0 +1,124 @@
+{
+  "Alba": [],
+  "Arad": [],
+  "Argeș": [],
+  "Bacău": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    }
+  ],
+  "Bihor": [],
+  "Bistrița-Năsăud": [],
+  "Botoșani": [],
+  "Brăila": [],
+  "Brașov": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    },
+    {
+      "protocol": "Meshtastic",
+      "frequency": "868Mhz"
+    }
+  ],
+  "București": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    },
+    {
+      "protocol": "Meshtastic",
+      "frequency": "868Mhz"
+    },
+    {
+      "protocol": "Meshtastic",
+      "frequency": "433Mhz"
+    },
+    {
+      "protocol": "Reticulum",
+      "frequency": "868Mhz"
+    }
+  ],
+  "Buzău": [],
+  "Călărași": [],
+  "Caraș-Severin": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    }
+  ],
+  "Cluj": [],
+  "Constanța": [],
+  "Covasna": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    }
+  ],
+  "Dâmbovița": [],
+  "Dolj": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    }
+  ],
+  "Galați": [],
+  "Giurgiu": [],
+  "Gorj": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    }
+  ],
+  "Harghita": [],
+  "Hunedoara": [],
+  "Ialomița": [],
+  "Iași": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    },
+    {
+      "protocol": "Meshtastic",
+      "frequency": "433Mhz"
+    }
+  ],
+  "Ilfov": [],
+  "Maramureș": [],
+  "Mehedinți": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    }
+  ],
+  "Mureș": [],
+  "Neamț": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    }
+  ],
+  "Olt": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    }
+  ],
+  "Prahova": [],
+  "Sălaj": [],
+  "Satu Mare": [],
+  "Sibiu": [],
+  "Suceava": [],
+  "Teleorman": [],
+  "Timiș": [],
+  "Tulcea": [],
+  "Vâlcea": [
+    {
+      "protocol": "MeshCore",
+      "frequency": "868Mhz"
+    }
+  ],
+  "Vaslui": [],
+  "Vrancea": []
+}

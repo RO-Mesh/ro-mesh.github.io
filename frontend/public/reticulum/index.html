@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ro" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Reticulum — Stivă de Rețea Criptografică Agnostică de Mediu | RO-MESH</title>
+  <meta name="description"
+    content="Reticulum este o stivă de rețea cu criptografie end-to-end implicită, ce conectează LoRa, Wi-Fi și internet într-o singură rețea resilientă — ideal pentru scenarii tactice avansate." />
+
+  <!-- ── PWA ────────────────────────────────────────────────────────────── -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#2DC653" />
+
+  <!-- ── Fonts ─────────────────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <!-- ── Anti-FOUC: Theme Bootstrap ──────────────────────────────────────
+       Rulează SINCRON înainte ca orice CSS să fie procesat.
+  ─────────────────────────────────────────────────────────────────────── -->
+  <script>
+    (function () {
+      'use strict';
+      var stored = localStorage.getItem('ro-mesh-theme');
+      if (stored === 'dark' || stored === 'light') {
+        document.documentElement.setAttribute('data-theme', stored);
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <link rel="stylesheet" href="/css/protocol.css">
+</head>
+
+<body>
+
+  <!-- Offline Banner -->
+  <div class="offline-banner" hidden id="offline-banner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <line x1="1" y1="1" x2="23" y2="23"></line>
+      <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+      <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+      <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+      <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+      <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+      <line x1="12" y1="20" x2="12.01" y2="20"></line>
+    </svg>
+    <span>Mod offline activat. Pagina rulează din memoria cache locală.</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 17L12 22L22 17" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 12L12 17L22 12" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span class="logo-text">RO-<span class="logo-accent">MESH</span></span> <span class="status-pill alpha">alpha</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#metrici" class="nav-link">Metrici</a>
+        <a href="#hardware" class="nav-link">Hardware</a>
+        <a href="#utilizare" class="nav-link">Utilizare</a>
+        <a href="#instalare" class="nav-link">Instalare</a>
+      </nav>
+
+      <!-- 3-State Theme Toggle -->
+      <button id="open-search-btn" class="lupa-icon" aria-label="Caută">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+      <div class="theme-toggle" id="theme-toggle" role="group" aria-label="Comutați tema interfeței">
+        <button class="theme-btn" id="theme-auto" data-theme-val="" title="Automatic" aria-pressed="true"
+          aria-label="Temă automată">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+          </svg>
+        </button>
+        <button class="theme-btn" id="theme-light" data-theme-val="light" title="Luminos" aria-pressed="false"
+          aria-label="Temă luminoasă">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+        </button>
+        <button class="theme-btn" id="theme-dark" data-theme-val="dark" title="Întunecat" aria-pressed="false"
+          aria-label="Temă întunecată">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         1. HERO
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="hero-section" id="hero" aria-labelledby="hero-heading">
+      <div class="hero-badge" id="ret-hero-badge">
+        <span class="hero-dot"></span>
+        Pentru utilizatori avansați &amp; scenarii tactice
+      </div>
+      <h1 id="hero-heading">
+        <span class="accent">Reticulum</span> — Stivă de rețea cu criptografie end-to-end implicită, ce conectează LoRa,
+        Wi-Fi și internet într-un singur strat de comunicație resilient.
+      </h1>
+      <p class="hero-tagline">
+        Proiectat pentru scenarii în care confidențialitatea și reziliența infrastructurii
+        contează mai mult decât simplitatea de configurare. Fiecare pachet este criptat
+        matematic înainte de a părăsi nodul — fără setări suplimentare.
+      </p>
+      <div class="hero-actions">
+        <a href="#instalare" class="btn-primary-green" id="ret-cta-install">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Cum se instalează
+        </a>
+        <a href="#hardware" class="btn-ghost" id="ret-cta-hardware">
+          Hardware recomandat
+        </a>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         2. METRICS GRID
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="proto-section bg-alt" id="metrici" aria-labelledby="metrici-heading">
+      <div class="page-container">
+        <p class="eyebrow" aria-hidden="true">Evaluare obiectivă</p>
+        <h2 id="metrici-heading" class="heading-lg mb-10">
+          Cele 3 metrici esențiale
+        </h2>
+
+        <div class="metrics-grid">
+
+          <div class="metric-card" id="ret-metric-dificultate">
+            <p class="metric-card-label">Dificultate instalare</p>
+            <span class="metric-badge badge-bad">Ridicată</span>
+            <p class="metric-desc">
+              Necesită Linux (Raspberry Pi sau echivalent), instalare prin pip/Python,
+              configurarea manuală a fișierului <code>config</code> și cunoașterea conceptelor
+              de interfețe de rețea. Nu există Web Flasher.
+            </p>
+          </div>
+
+          <div class="metric-card" id="ret-metric-complexitate">
+            <p class="metric-card-label">Complexitate configurare</p>
+            <span class="metric-badge badge-bad">Ridicată</span>
+            <p class="metric-desc">
+              Configurarea interfețelor (<span class="glossary-term" data-term="lora">LoRa</span> + Wi-Fi + TCP), setarea bridge-urilor
+              și alegerea aplicației client (Nomad Network, Sideband) necesită
+              experiență solidă în rețelistică și Linux.
+            </p>
+          </div>
+
+          <div class="metric-card" id="ret-metric-disponibilitate">
+            <p class="metric-card-label">Disponibilitate rețea</p>
+            <span class="metric-badge badge-bad">Scăzută</span>
+            <p class="metric-desc">
+              Comunitate mică în România. Fiecare utilizator trebuie să construiască
+              propria infrastructură — nu există noduri publice preexistente de care
+              să te conectezi imediat.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="summary-row mt-6">
+          <div class="summary-box">
+            <p class="summary-box-title green">
+              <svg viewBox="0 0 24 24">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              Avantaje
+            </p>
+            <ul class="summary-list">
+              <li>Criptografie end-to-end implicită — nu este nevoie să activezi manual securitatea.</li>
+              <li>Agnostic de mediu — rulează pe <span class="glossary-term" data-term="lora">LoRa</span>, Wi-Fi, Ethernet, fibră sau TCP/IP simultan.</li>
+              <li>Arhitectură P2P reală, fără punct central de eșec sau server de înregistrare.</li>
+              <li>Suportă transfer de fișiere mari și mesagerie asincronă prin <em>LXMF</em>.</li>
+            </ul>
+          </div>
+          <div class="summary-box">
+            <p class="summary-box-title red">
+              <svg viewBox="0 0 24 24">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+              Dezavantaje
+            </p>
+            <ul class="summary-list">
+              <li>Curbă de învățare semnificativă — necesită cunoștințe Linux și rețelistică.</li>
+              <li>Nu există interfață grafică nativă simplă pentru configurare hardware.</li>
+              <li>Comunitate mult mai mică în România față de Meshtastic.</li>
+              <li>Incompatibil direct cu MeshCore sau Meshtastic (fără bridge dedicat).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="conclusion-box">
+          <strong>Concluzie:</strong> Reticulum este alegerea potrivită dacă ai experiență Linux,
+          înțelegi concepte de rețelistică și ai nevoie de o stivă completă pentru un scenariu tactic
+          complex — bridging LoRa cu internet, transfer securizat de fișiere sau o rețea de noduri
+          complet independentă de orice infrastructură comercială.
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         3. HARDWARE RECOMANDAT
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="proto-section" id="hardware" aria-labelledby="hw-heading">
+      <div class="page-container">
+        <p class="eyebrow" aria-hidden="true">Echipamente</p>
+        <h2 id="hw-heading" class="heading-lg mb-3">
+          Hardware recomandat
+        </h2>
+        <p class="text-secondary max-w-60 mb-10">
+          Spre deosebire de MeshCore și Meshtastic, Reticulum rulează pe un calculator complet
+          (Linux) și comunică prin interfețe hardware <span class="glossary-term" data-term="lora">LoRa</span> conectate prin USB sau SPI.
+          Există două configurații principale.
+        </p>
+
+        <div class="hw-grid">
+
+          <div class="hw-card" id="ret-hw-nod-fix">
+            <span class="hw-card-role">🖥 Nod fix — Raspberry Pi + HAT <span class="glossary-term" data-term="lora">LoRa</span></span>
+            <h3 class="hw-card-title">Configurație nod gateway</h3>
+            <p class="hw-card-boards">Raspberry Pi Zero 2W / Pi 4 + RNode HAT</p>
+            <p class="hw-card-desc">
+              Combinația standard recomandată de comunitatea Reticulum este un
+              <strong>Raspberry Pi Zero 2W</strong> cu un modul <span class="glossary-term" data-term="lora">LoRa</span> SX1262 conectat pe SPI
+              sau un <strong>RNode</strong> (dispozitiv dedicat dezvoltat de comunitate) conectat
+              prin USB. RNode este recomandat pentru simplitate — se configurează ca interfață
+              serială standard, fără driver special.
+              <br><br>
+              Pi Zero 2W consumă ~0.9–1.5 W în repaus, suficient pentru alimentare solară cu
+              un panou de 5 W și o baterie de 5000 mAh — autonomie completă pe durata nopții.
+            </p>
+          </div>
+
+          <div class="hw-card" id="ret-hw-portabil">
+            <span class="hw-card-role">📱 Nod portabil — Android + Sideband</span>
+            <h3 class="hw-card-title">Nod mobil prin Bluetooth/USB</h3>
+            <p class="hw-card-boards">Orice telefon Android + RNode / T-Echo (firmware RNode)</p>
+            <p class="hw-card-desc">
+              Aplicația <strong>Sideband</strong> (disponibilă pe Android) permite utilizarea
+              Reticulum direct de pe telefon, conectat la un RNode prin Bluetooth sau USB-OTG.
+              Această configurație este cea mai accesibilă cale de testare a protocolului fără
+              un Raspberry Pi dedicat.
+              <br><br>
+              <strong>LILYGO T-Echo</strong> flashat cu firmware RNode poate funcționa ca
+              interfață <span class="glossary-term" data-term="lora">LoRa</span> pentru Sideband — transformând un telefon Android într-un nod
+              Reticulum portabil, inclusiv cu GPS și ecran e-ink.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="complexity-notice">
+          <strong>Notă de complexitate:</strong> Configurarea unui nod Reticulum funcțional
+          necesită editarea manuală a fișierului <code>~/.reticulum/config</code> și familiarizarea
+          cu conceptele de <em>transport</em>, <em>interfețe</em> și <em>destinații</em>.
+          Consultați <strong>reticulum.network/manual</strong> înainte de a comanda hardware.
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         4. CAZ DE UTILIZARE — PARU
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="proto-section bg-alt" id="utilizare" aria-labelledby="paru-heading">
+      <div class="page-container">
+        <p class="eyebrow" aria-hidden="true">Strategie PARU</p>
+        <h2 id="paru-heading" class="heading-lg mb-3">
+          Când alegi Reticulum în strategia PARU?
+        </h2>
+        <p class="text-secondary max-w-68 mb-10">
+          Reticulum nu este un layer de comunicație simplu — este o stivă de rețea completă.
+          Din perspectiva PARU, funcționează optim ca layer de <em>Rezervă</em> sau <em>Urgență</em>
+          pentru scenarii care necesită securitate criptografică dovedită și bridging de medii diferite.
+          Nu este recomandat ca primă alegere pentru utilizatorii fără experiență Linux.
+        </p>
+
+        <div class="paru-strip">
+
+          <div class="paru-tile" id="ret-paru-p">
+            <span class="paru-ghost-letter" aria-hidden="true">P</span>
+            <p class="paru-tile-name">Plan</p>
+            <p class="paru-tile-role">Comunicare primară</p>
+            <p class="paru-tile-desc">Telefon mobil, internet, aplicații standard. Reticulum nu este adecvat pentru
+              utilizare zilnică curentă.</p>
+          </div>
+
+          <div class="paru-tile" id="ret-paru-a">
+            <span class="paru-ghost-letter" aria-hidden="true">A</span>
+            <p class="paru-tile-name">Alternativ</p>
+            <p class="paru-tile-role">Aplicabil dacă infrastructura există</p>
+            <p class="paru-tile-desc">
+              Dacă ai deja noduri Reticulum configurate și funcționale, poate prelua
+              comunicarea când rețeaua mobilă cedează. Necesită planificare avansată.
+            </p>
+          </div>
+
+          <div class="paru-tile active" id="ret-paru-r" aria-label="Strat activ: Reticulum">
+            <span class="paru-ghost-letter" aria-hidden="true">R</span>
+            <p class="paru-tile-name">Rezervă</p>
+            <p class="paru-tile-role">Bridge <span class="glossary-term" data-term="lora">LoRa</span> ↔ Internet</p>
+            <p class="paru-tile-desc">
+              Reticulum excelează ca bridge: conectează o rețea <span class="glossary-term" data-term="lora">LoRa</span> locală la internet
+              prin TCP, permițând accesul la noduri îndepărtate fără altă infrastructură.
+            </p>
+            <span class="paru-active-badge">✦ Reticulum</span>
+          </div>
+
+          <div class="paru-tile active" id="ret-paru-u" aria-label="Strat activ: Reticulum">
+            <span class="paru-ghost-letter" aria-hidden="true">U</span>
+            <p class="paru-tile-name">Urgență</p>
+            <p class="paru-tile-role">Rețea criptată complet autonomă</p>
+            <p class="paru-tile-desc">
+              Noduri Reticulum pe Pi + solar, complet izolate de internet.
+              Transfer de fișiere și mesagerie criptată end-to-end, fără niciun server central.
+            </p>
+            <span class="paru-active-badge">✦ Reticulum</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════════
+         5. INSTALARE
+    ════════════════════════════════════════════════════════════════════════ -->
+    <section class="proto-section" id="instalare" aria-labelledby="install-heading">
+      <div class="page-container">
+        <p class="eyebrow" aria-hidden="true">Ghid rapid</p>
+        <h2 id="install-heading" class="heading-lg mb-12">
+          Instalare în patru pași
+        </h2>
+
+        <div class="install-steps">
+          <ol class="step-list" role="list">
+
+            <li class="step-item" id="ret-step-1">
+              <div class="step-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="9" cy="21" r="1" />
+                  <circle cx="20" cy="21" r="1" />
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                </svg>
+              </div>
+              <div class="step-body">
+                <p class="step-num">Pasul 01</p>
+                <h3 class="step-title">Pregătește hardware-ul și sistemul de operare</h3>
+                <p class="step-desc">
+                  Instalează Raspberry Pi OS Lite pe un Pi Zero 2W sau Pi 4.
+                  Conectează modulul <span class="glossary-term" data-term="lora">LoRa</span> (RNode prin USB sau HAT SX1262 pe SPI).
+                  Asigură-te că Python 3.7+ este disponibil — vine preinstalat pe Pi OS.
+                </p>
+              </div>
+            </li>
+
+            <li class="step-item" id="ret-step-2">
+              <div class="step-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                </svg>
+              </div>
+              <div class="step-body">
+                <p class="step-num">Pasul 02</p>
+                <h3 class="step-title">Instalează Reticulum prin pip</h3>
+                <p class="step-desc">
+                  Rulează în terminal:
+                </p>
+                <code class="step-code">pip install rns</code>
+                <p class="step-desc mt-2">
+                  Prima pornire generează automat fișierul de configurare în
+                  <code>~/.reticulum/config</code>. Editează secțiunea
+                  <code>[[RNodeInterface]]</code> cu portul serial al modului <span class="glossary-term" data-term="lora">LoRa</span>
+                  și frecvența de 868 MHz.
+                </p>
+              </div>
+            </li>
+
+            <li class="step-item" id="ret-step-3">
+              <div class="step-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div class="step-body">
+                <p class="step-num">Pasul 03</p>
+                <h3 class="step-title">Instalează o aplicație client</h3>
+                <p class="step-desc">
+                  <strong>Nomad Network</strong> — interfață terminal pentru mesagerie și pagini
+                  (rulează pe Pi direct):
+                </p>
+                <code class="step-code">pip install nomadnet &amp;&amp; nomadnet</code>
+                <p class="step-desc mt-2">
+                  Alternativ, <strong>Sideband</strong> pe Android (conectat la Pi prin SSH sau
+                  la un RNode prin USB-OTG) oferă o interfață grafică accesibilă pentru
+                  mesagerie și transfer de fișiere.
+                </p>
+              </div>
+            </li>
+
+            <li class="step-item" id="ret-step-4">
+              <div class="step-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M22 2L11 13" />
+                  <path d="M22 2L15 22 11 13 2 9l20-7z" />
+                </svg>
+              </div>
+              <div class="step-body">
+                <p class="step-num">Pasul 04</p>
+                <h3 class="step-title">Verifici conectivitatea și trimiți primul mesaj</h3>
+                <p class="step-desc">
+                  Rulează <code>rnstatus</code> pentru a verifica că interfețele sunt active.
+                  Dacă există un al doilea nod Reticulum în raza <span class="glossary-term" data-term="lora">LoRa</span>, se va anunța automat
+                  prin protocol de anunț. Trimiți primul mesaj prin Nomad Network sau Sideband —
+                  complet criptat, fără server intermediar.
+                </p>
+              </div>
+            </li>
+
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <section class="top-footer">
+    <div class="container">
+      <h3>Resurse Reticulum Network</h3>
+      <ul class="top-footer-links">
+        <li><a href="https://reticulum.network" target="_blank" rel="noopener">Reticulum Oficial (reticulum.network)</a>
+        </li>
+        <li><a href="https://markqvist.github.io/Sideband/" target="_blank" rel="noopener">Sideband App</a></li>
+        <li><a href="https://markqvist.github.io/NomadNet/" target="_blank" rel="noopener">Nomad Network</a></li>
+        <li><a href="https://reticulum.network/hardware.html" target="_blank" rel="noopener">RNode Hardware Guide</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Section 1: Branding -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+              class="svg-inline">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M2 12L12 17L22 12" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            <span class="logo-text">RO-<span class="logo-accent">MESH</span></span>
+          </div>
+          <p class="footer-tagline">RO-MESH — Comunitatea rețelelor radio descentralizate din România.</p>
+        </div>
+
+        <!-- Section 2: Quick Links -->
+        <div class="footer-links">
+          <h4>Linkuri Rapide</h4>
+          <ul>
+            <li><a href="/">Acasă</a></li>
+            <li><a href="/dictionar.html">Dicționar</a></li>
+            <li><a href="/comunitati.html">Comunități</a></li>
+          </ul>
+        </div>
+
+        <!-- Section 3: Protocols -->
+        <div class="footer-links">
+          <h4>Protocoale</h4>
+          <ul>
+            <li><a href="/meshcore/">MeshCore</a></li>
+            <li><a href="/meshtastic/">Meshtastic</a></li>
+            <li><a href="/reticulum/">Reticulum</a></li>
+          </ul>
+        </div>
+
+        <!-- Section 4: Legal / Info -->
+        <div class="footer-info">
+          <h4>Informații</h4>
+          <p>Proiect Open-Source dedicat rezilienței.</p>
+          <p class="copyright">&copy; <span id="current-year"></span> RO-MESH. Toate drepturile rezervate.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+
+  <script>
+    // ── Offline detection ────────────────────────────────────────────────
+    window.addEventListener('load', () => {
+      const offlineBanner = document.getElementById('offline-banner');
+      function updateOnlineStatus() {
+        if (!navigator.onLine) {
+          offlineBanner.removeAttribute('hidden');
+        } else {
+          offlineBanner.setAttribute('hidden', '');
+        }
+      }
+      window.addEventListener('online', updateOnlineStatus);
+      window.addEventListener('offline', updateOnlineStatus);
+      updateOnlineStatus();
+    });
+
+    // ── 3-State Theme Toggle ─────────────────────────────────────────────
+    (function () {
+      'use strict';
+      var STORAGE_KEY = 'ro-mesh-theme';
+      var html = document.documentElement;
+      var btnAuto = document.getElementById('theme-auto');
+      var btnLight = document.getElementById('theme-light');
+      var btnDark = document.getElementById('theme-dark');
+      var buttons = [btnAuto, btnLight, btnDark];
+
+      function syncButtons(activeVal) {
+        buttons.forEach(function (btn) {
+          if (!btn) return;
+          btn.setAttribute('aria-pressed', btn.dataset.themeVal === activeVal ? 'true' : 'false');
+        });
+      }
+
+      function applyTheme(themeVal) {
+        if (themeVal === 'light' || themeVal === 'dark') {
+          html.setAttribute('data-theme', themeVal);
+          try { localStorage.setItem(STORAGE_KEY, themeVal); } catch (e) { }
+        } else {
+          html.removeAttribute('data-theme');
+          try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
+        }
+        syncButtons(themeVal);
+      }
+
+      var currentTheme = html.getAttribute('data-theme') || '';
+      syncButtons(currentTheme);
+
+      buttons.forEach(function (btn) {
+        if (!btn) return;
+        btn.addEventListener('click', function () { applyTheme(btn.dataset.themeVal); });
+      });
+
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+          var stored = '';
+          try { stored = localStorage.getItem(STORAGE_KEY) || ''; } catch (e) { }
+          if (!stored) syncButtons('');
+        });
+      }
+    })();
+  </script>
+  <script src="/js/search-index.js"></script>
+  <script src="/js/search.js"></script>
+  <div id="search-overlay" class="search-fullscreen hidden">
+    <button id="close-search-overlay" class="search-close-btn" aria-label="Închide căutarea">&times;</button>
+    <div class="search-overlay-header">
+      <input type="text" id="giant-search-input" placeholder="Caută în portal...">
+    </div>
+    <div id="search-results-container" class="search-results-fullscreen"></div>
+  </div>
+  <div id="pwa-install-banner" class="pwa-banner hidden">
+    <div class="pwa-banner-content">
+      <span class="pwa-icon">📡</span>
+      <div class="pwa-text">
+        <strong>Instalează RO-MESH</strong>
+        <p>Adaugă portalul pe ecranul principal pentru acces rapid și complet offline.</p>
+      </div>
+    </div>
+    <div class="pwa-actions">
+      <button id="pwa-install-btn" class="btn-primary">Instalează</button>
+      <button id="pwa-dismiss-btn" class="btn-secondary" aria-label="Nu acum">&times;</button>
+    </div>
+  </div>
+  <script src="/js/pwa-install.js"></script>
+</body>
+
+</html>

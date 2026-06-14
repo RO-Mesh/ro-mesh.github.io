@@ -1,0 +1,45 @@
+{
+  "name": "RO-MESH — Rețeaua Comunitară din România",
+  "short_name": "RO-MESH",
+  "description": "Portal de prezentare și utilități pentru comunitatea mesh din România. Funcționează offline.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1a1f2e",
+  "theme_color": "#2DC653",
+  "lang": "ro",
+  "dir": "ltr",
+  "categories": ["utilities", "social", "communication"],
+  "icons": [
+    {
+      "src": "/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Instalare Nod",
+      "short_name": "Instalare",
+      "description": "Ghid pas cu pas pentru instalarea primului tău nod MeshCore",
+      "url": "/#instalare",
+      "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Hartă Rețea",
+      "short_name": "Hartă",
+      "description": "Vizualizează nodurile active din România",
+      "url": "/#harta",
+      "icons": [{ "src": "/images/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

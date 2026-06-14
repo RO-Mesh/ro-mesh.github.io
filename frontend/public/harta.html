@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ro" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Harta Rețelelor - RO-MESH</title>
+  <meta name="description"
+    content="Harta interactivă a rețelelor mesh radio active din România, organizată pe județe. Descoperă dacă există o rețea în județul tău." />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#2DC653" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <!-- Anti-FOUC theme bootstrap -->
+  <script>
+    (function () {
+      'use strict';
+      var stored = localStorage.getItem('ro-mesh-theme');
+      if (stored === 'dark' || stored === 'light') {
+        document.documentElement.setAttribute('data-theme', stored);
+      }
+    })();
+  </script>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+
+<body>
+
+  <!-- Offline Banner -->
+  <div class="offline-banner" hidden id="offline-banner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <line x1="1" y1="1" x2="23" y2="23"></line>
+      <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+      <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+      <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+      <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+      <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+      <line x1="12" y1="20" x2="12.01" y2="20"></line>
+    </svg>
+    <span>Mod offline activat. Pagina rulează din memoria cache locală.</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 17L12 22L22 17" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 12L12 17L22 12" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span class="logo-text">RO-<span class="logo-accent">MESH</span></span><span
+          class="status-pill alpha">alpha</span>
+      </a>
+      <button id="open-search-btn" class="lupa-icon" aria-label="Caută">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+      <div class="theme-toggle" id="theme-toggle" role="group" aria-label="Comutați tema interfeței">
+        <button class="theme-btn" id="theme-auto" data-theme-val="" title="Automatic — urmează tema OS"
+          aria-pressed="true" aria-label="Temă automată (sistem)">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+          </svg>
+        </button>
+        <button class="theme-btn" id="theme-light" data-theme-val="light" title="Luminos" aria-pressed="false"
+          aria-label="Temă luminoasă">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+        </button>
+        <button class="theme-btn" id="theme-dark" data-theme-val="dark" title="Întunecat" aria-pressed="false"
+          aria-label="Temă întunecată">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Fullscreen Search Overlay (shared component) -->
+  <div id="search-overlay" class="search-overlay" role="dialog" aria-modal="true" aria-label="Căutare globală" hidden>
+    <div class="search-overlay-inner">
+      <button id="close-search-btn" class="close-search-btn" aria-label="Închide căutarea">&#x2715;</button>
+      <input type="search" id="search-input" class="search-giant-input" placeholder="Caută în RO-MESH…"
+        autocomplete="off" spellcheck="false" />
+      <div id="search-results" class="search-results" role="listbox" aria-label="Rezultate căutare"></div>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+
+      <!-- Page header -->
+      <section class="map-page-header">
+        <p class="eyebrow" aria-hidden="true">Acoperire națională</p>
+        <h1 class="map-page-title">Harta Rețelelor RO-MESH</h1>
+        <p class="map-page-lead">
+          Județele colorate indică prezența cel puțin a unei rețele mesh active. Apasă pe un județ pentru detalii.
+          Datele sunt actualizate manual — dacă ai o rețea nelistată,
+          <a href="https://github.com/ro-mesh" target="_blank" rel="noopener">contribuie pe GitHub</a>.
+        </p>
+      </section>
+
+      <!-- Leaflet Map -->
+      <div id="romania-map" role="img" aria-label="Harta interactivă a județelor României cu rețele mesh active"></div>
+
+      <!-- Map legend -->
+      <div class="map-legend" aria-hidden="true">
+        <span class="map-legend-item map-legend-active">
+          <span class="map-legend-dot"></span> Rețea activă
+        </span>
+        <span class="map-legend-item map-legend-none">
+          <span class="map-legend-dot"></span> Fără rețea înregistrată
+        </span>
+      </div>
+
+      <!-- Alphabetical county list -->
+      <section class="county-list-section" aria-labelledby="county-list-heading">
+        <h2 id="county-list-heading" class="county-list-heading">Lista județelor</h2>
+        <div id="county-list-container">
+          <p class="map-loading">Se încarcă datele…</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+              class="svg-inline">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="var(--color-accent)" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M2 12L12 17L22 12" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            <span class="logo-text">RO-<span class="logo-accent">MESH</span></span>
+          </div>
+          <p class="footer-tagline">RO-MESH — Comunitatea rețelelor radio descentralizate din România.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Linkuri Rapide</h4>
+          <ul>
+            <li><a href="/">Acasă</a></li>
+            <li><a href="/dictionar.html">Dicționar</a></li>
+            <li><a href="/comunitati.html">Comunități</a></li>
+            <li><a href="/harta.html">Hartă</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Protocoale</h4>
+          <ul>
+            <li><a href="/meshcore/">MeshCore</a></li>
+            <li><a href="/meshtastic/">Meshtastic</a></li>
+            <li><a href="/reticulum/">Reticulum</a></li>
+          </ul>
+        </div>
+        <div class="footer-info">
+          <h4>Informații</h4>
+          <p>Proiect Open-Source dedicat rezilienței.</p>
+          <p class="copyright">&copy; <span id="current-year"></span> RO-MESH. Toate drepturile rezervate.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+
+  <!-- Shared scripts -->
+  <script src="/js/dictionary.js"></script>
+  <script src="/js/tooltip.js"></script>
+  <script src="/js/search-index.js"></script>
+  <script src="/js/search.js"></script>
+  <script src="/js/theme.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Map logic -->
+  <script src="/js/map.js"></script>
+
+</body>
+
+</html>

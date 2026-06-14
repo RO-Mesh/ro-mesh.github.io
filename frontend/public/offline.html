@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ro" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offline — RO-MESH</title>
+  <meta name="description" content="Ești offline, dar conținutul principal RO-MESH este disponibil din cache." />
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="/css/offline.css">
+</head>
+<body>
+
+  <svg class="mesh-anim" viewBox="0 0 1200 800" aria-hidden="true">
+    <circle cx="200" cy="200" r="200" fill="#2DC653"/>
+    <circle cx="1000" cy="600" r="250" fill="#2DC653"/>
+    <circle cx="600" cy="400" r="150" fill="#2DC653"/>
+  </svg>
+
+  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+    <line x1="1" y1="1" x2="23" y2="23"/>
+    <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/>
+  </svg>
+
+  <h1>Ești offline</h1>
+  <p>Nu există conexiune la internet momentan.</p>
+  <p>Totuși, ghidurile de instalare și conținutul principal RO-MESH sunt salvate în cache și funcționează complet offline.</p>
+
+  <div class="actions">
+    <a href="/" class="btn btn-primary">Accesează portalul</a>
+    <button class="btn btn-secondary" onclick="window.location.reload()">
+      Încearcă din nou
+    </button>
+  </div>
+
+  <div id="pwa-install-banner" class="pwa-banner hidden">
+    <div class="pwa-banner-content">
+      <span class="pwa-icon">📡</span>
+      <div class="pwa-text">
+        <strong>Instalează RO-MESH</strong>
+        <p>Adaugă portalul pe ecranul principal pentru acces rapid și complet offline.</p>
+      </div>
+    </div>
+    <div class="pwa-actions">
+      <button id="pwa-install-btn" class="btn-primary">Instalează</button>
+      <button id="pwa-dismiss-btn" class="btn-secondary" aria-label="Nu acum">&times;</button>
+    </div>
+  </div>
+  <script src="/js/pwa-install.js"></script>
+</body>
+</html>

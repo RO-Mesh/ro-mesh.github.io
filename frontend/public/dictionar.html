@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dicționar RO-MESH</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script>
+    (function () {
+      var STORAGE_KEY = 'ro-mesh-theme';
+      var currentTheme = '';
+      try { currentTheme = localStorage.getItem(STORAGE_KEY); } catch (e) { }
+      if (currentTheme === 'light' || currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <span class="logo-text">RO-<span class="logo-accent">MESH</span></span> <span class="status-pill alpha">alpha</span>
+      </a>
+
+      <!-- ── Comutator temă (Automatic / Luminos / Întunecat) ─────────────── -->
+      <button id="open-search-btn" class="lupa-icon" aria-label="Caută">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+      <div class="theme-toggle" id="theme-toggle" role="group" aria-label="Comutați tema interfeței">
+        <!-- Buton: Automatic (Sistem) — icon monitor -->
+        <button class="theme-btn" id="theme-auto" data-theme-val="" title="Automatic — urmează tema OS"
+          aria-pressed="true" aria-label="Temă automată (sistem)">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+          </svg>
+        </button>
+        <!-- Buton: Luminos — icon soare -->
+        <button class="theme-btn" id="theme-light" data-theme-val="light" title="Luminos" aria-pressed="false"
+          aria-label="Temă luminoasă">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+        </button>
+        <!-- Buton: Întunecat — icon lună -->
+        <button class="theme-btn" id="theme-dark" data-theme-val="dark" title="Întunecat" aria-pressed="false"
+          aria-label="Temă întunecată">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-nav">
+    <section class="container py-12">
+      <h1 class="section-title">Dicționar de termeni</h1>
+      <p class="section-lead">Glosarul termenilor tehnici utilizați în comunitatea RO-MESH.</p>
+
+      <div id="alphabet-index" class="alphabet-nav"></div>
+
+      <div class="table-responsive">
+        <table class="dictionary-table">
+          <thead>
+            <tr>
+              <th>Denumire</th>
+              <th>Explicație</th>
+              <th>Sursă</th>
+            </tr>
+          </thead>
+          <tbody id="dictionary-table-body">
+            <!-- Dynamic content injected here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Section 1: Branding -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+              class="svg-inline">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M2 12L12 17L22 12" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            <span class="logo-text">RO-<span class="logo-accent">MESH</span></span>
+          </div>
+          <p class="footer-tagline">RO-MESH — Comunitatea rețelelor radio descentralizate din România.</p>
+        </div>
+
+        <!-- Section 2: Quick Links -->
+        <div class="footer-links">
+          <h4>Linkuri Rapide</h4>
+          <ul>
+            <li><a href="/">Acasă</a></li>
+            <li><a href="/dictionar.html">Dicționar</a></li>
+            <li><a href="/comunitati.html">Comunități</a></li>
+          </ul>
+        </div>
+
+        <!-- Section 3: Protocols -->
+        <div class="footer-links">
+          <h4>Protocoale</h4>
+          <ul>
+            <li><a href="/meshcore/">MeshCore</a></li>
+            <li><a href="/meshtastic/">Meshtastic</a></li>
+            <li><a href="/reticulum/">Reticulum</a></li>
+          </ul>
+        </div>
+
+        <!-- Section 4: Legal / Info -->
+        <div class="footer-info">
+          <h4>Informații</h4>
+          <p>Proiect Open-Source dedicat rezilienței.</p>
+          <p class="copyright">&copy; <span id="current-year"></span> RO-MESH. Toate drepturile rezervate.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+
+  <script src="/js/dictionary.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tbody = document.getElementById('dictionary-table-body');
+      const alphabetNav = document.getElementById('alphabet-index');
+
+      if (!window.glossaryTerms) {
+        tbody.innerHTML = '<tr><td colspan="3">Eroare la încărcarea dicționarului.</td></tr>';
+        return;
+      }
+
+      const termsObj = window.glossaryTerms;
+      const sortedKeys = Object.keys(termsObj).sort();
+
+      // Collect unique starting letters
+      const presentLetters = new Set();
+      sortedKeys.forEach(key => {
+        presentLetters.add(key.charAt(0).toUpperCase());
+      });
+
+      // Step A: Render Alphabet Index
+      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+      alphabet.forEach(letter => {
+        if (presentLetters.has(letter)) {
+          const a = document.createElement('a');
+          a.href = `#letter-${letter.toLowerCase()}`;
+          a.className = 'index-letter active';
+          a.textContent = letter;
+          alphabetNav.appendChild(a);
+        } else {
+          const span = document.createElement('span');
+          span.className = 'index-letter disabled';
+          span.textContent = letter;
+          alphabetNav.appendChild(span);
+        }
+      });
+
+      // Step B: Render Table Rows with Letter Grouping
+      let currentLetter = '';
+
+      sortedKeys.forEach(key => {
+        const termLetter = key.charAt(0).toUpperCase();
+
+        if (termLetter !== currentLetter) {
+          currentLetter = termLetter;
+          const separatorRow = document.createElement('tr');
+          separatorRow.id = `letter-${currentLetter.toLowerCase()}`;
+          separatorRow.className = 'letter-heading-row';
+          separatorRow.innerHTML = `<td colspan="3"><h2>${currentLetter}</h2></td>`;
+          tbody.appendChild(separatorRow);
+        }
+
+        const term = termsObj[key];
+        const tr = document.createElement('tr');
+        tr.id = key; // for anchor linking
+
+        tr.innerHTML = `
+          <td class="dict-term-cell"><strong>${key.toUpperCase()}</strong></td>
+          <td>${term.full}</td>
+          <td class="dict-source-cell">${term.source || '-'}</td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    });
+  </script>
+  <script>
+    // ── Gestionare temă (Automatic / Luminos / Întunecat) ───────────────────
+    (function () {
+      'use strict';
+      var STORAGE_KEY = 'ro-mesh-theme';
+      var html = document.documentElement;
+      var btnAuto = document.getElementById('theme-auto');
+      var btnLight = document.getElementById('theme-light');
+      var btnDark = document.getElementById('theme-dark');
+      var buttons = [btnAuto, btnLight, btnDark];
+
+      function syncButtons(activeVal) {
+        buttons.forEach(function (btn) {
+          if (!btn) return;
+          btn.setAttribute('aria-pressed', btn.dataset.themeVal === activeVal ? 'true' : 'false');
+        });
+      }
+
+      function applyTheme(themeVal) {
+        if (themeVal === 'light' || themeVal === 'dark') {
+          html.setAttribute('data-theme', themeVal);
+          try { localStorage.setItem(STORAGE_KEY, themeVal); } catch (e) { }
+        } else {
+          html.removeAttribute('data-theme');
+          try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
+        }
+        syncButtons(themeVal);
+      }
+
+      var currentTheme = html.getAttribute('data-theme') || '';
+      syncButtons(currentTheme);
+
+      buttons.forEach(function (btn) {
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          applyTheme(btn.dataset.themeVal);
+        });
+      });
+
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+          var storedTheme = '';
+          try { storedTheme = localStorage.getItem(STORAGE_KEY) || ''; } catch (e) { }
+          if (!storedTheme) {
+            syncButtons('');
+          }
+        });
+      }
+    })();
+  </script>
+  <script src="/js/search-index.js"></script>
+  <script src="/js/search.js"></script>
+  <div id="search-overlay" class="search-fullscreen hidden">
+    <button id="close-search-overlay" class="search-close-btn" aria-label="Închide căutarea">&times;</button>
+    <div class="search-overlay-header">
+      <input type="text" id="giant-search-input" placeholder="Caută în portal...">
+    </div>
+    <div id="search-results-container" class="search-results-fullscreen"></div>
+  </div>
+  <div id="pwa-install-banner" class="pwa-banner hidden">
+    <div class="pwa-banner-content">
+      <span class="pwa-icon">📡</span>
+      <div class="pwa-text">
+        <strong>Instalează RO-MESH</strong>
+        <p>Adaugă portalul pe ecranul principal pentru acces rapid și complet offline.</p>
+      </div>
+    </div>
+    <div class="pwa-actions">
+      <button id="pwa-install-btn" class="btn-primary">Instalează</button>
+      <button id="pwa-dismiss-btn" class="btn-secondary" aria-label="Nu acum">&times;</button>
+    </div>
+  </div>
+  <script src="/js/pwa-install.js"></script>
+</body>
+
+</html>

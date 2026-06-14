@@ -1,0 +1,55 @@
+# ─────────────────────────────────────────────
+#  RO-MESH  —  Docker Compose Workspace
+#  Community portal for the Romanian MeshCore mesh network
+# ─────────────────────────────────────────────
+
+services:
+
+  # ── Frontend: Offline-first PWA served via Nginx ─────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ro-mesh-frontend
+    ports:
+      - "8080:80"
+    networks:
+      - ro-mesh-net
+    depends_on:
+      - backend
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=false"
+      - "ro-mesh.service=frontend"
+
+  # ── Backend: Node.js utility service (stub for future expansion) ──────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ro-mesh-backend
+    ports:
+      - "3001:3000"
+    networks:
+      - ro-mesh-net
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "ro-mesh.service=backend"
+
+networks:
+  ro-mesh-net:
+    driver: bridge
+    name: ro-mesh-network
+
+volumes:
+  frontend-cache:
+    name: ro-mesh-frontend-cache

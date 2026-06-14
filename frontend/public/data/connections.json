@@ -1,0 +1,32 @@
+[
+  {
+    "source": "București",
+    "destination": "Dolj",
+    "protocol": "MeshCore",
+    "frequency": "868MHz"
+  },
+  {
+    "source": "Caraș-Severin",
+    "destination": "Gorj",
+    "protocol": "MeshCore",
+    "frequency": "868MHz"
+  },
+  {
+    "source": "Covasna",
+    "destination": "Brașov",
+    "protocol": "MeshCore",
+    "frequency": "868MHz"
+  },
+  {
+    "source": "Dolj",
+    "destination": "Mehedinți",
+    "protocol": "MeshCore",
+    "frequency": "868MHz"
+  },
+  {
+    "source": "Dolj",
+    "destination": "Gorj",
+    "protocol": "MeshCore",
+    "frequency": "868MHz"
+  }
+]

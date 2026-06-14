@@ -1,0 +1,82 @@
+:root {
+      --color-bg: #1a1f2e;
+      --color-accent: #2DC653;
+      --color-text: #f0f2f5;
+      --color-muted: #9ba5c0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 2rem;
+      color: var(--color-accent);
+    }
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: var(--color-muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      max-width: 45ch;
+      margin-bottom: 0.5rem;
+    }
+    .actions {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      border-radius: 999px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--color-accent);
+      color: #0a1a0d;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-text);
+      border: 1.5px solid rgba(255,255,255,0.15);
+    }
+    .mesh-anim {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.05;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 0.7; }
+    }
+    circle { animation: pulse 3s ease-in-out infinite; }
+    circle:nth-child(2) { animation-delay: 1s; }
+    circle:nth-child(3) { animation-delay: 2s; }
