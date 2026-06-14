@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.18.0
+- Rewrote the "Problema & Ghid — Strategia PARU" section on the homepage for clarity and PACE plan accuracy.
+- Card P: renamed from "Plan" to "Principal", updated description to emphasize everyday communication use.
+- Card A: expanded description to clarify that the mesh network activates when mobile network degrades.
+- Card R: updated description with DMR example; added `PMR` and `VHF` badges.
+- Card U: expanded to explicitly state "without server, without internet, without operator".
+- Introductory paragraph split into three paragraphs; "LoRa networks" now correctly attributed to Alternativ and Urgență layers.
+
 ## v0.17.0
 - Implemented protocol-based dynamic color coding across the entire map. Each protocol is now assigned a distinct color: MeshCore (blue `#3498DB`), Meshtastic (green `#2ECC71`), Reticulum (purple `#9B59B6`), Unknown (gray `#95A5A6`).
 - Replaced static accent-color county polygon fills with protocol-derived colors. Active counties are now tinted in the dominant (first) protocol's color.

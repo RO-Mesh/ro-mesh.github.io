@@ -125,11 +125,11 @@
       </div>
       <h1>
         Construiește-ți propria rețea.<br>
-        <span class="accent">Comunică cu familia și comunitatea ta</span><br>
-        independent de rețelele clasice.
+        <span class="accent">Comunică cu familia și comunitatea ta.</span><br>
+        Independent de rețelele clasice.
       </h1>
       <p class="hero-sub">
-        Fără abonamente, bazate pe o platformă hardware ieftină și deschisă.
+        Fără abonamente, totul bazat pe hardware ieftin și software gratis.
       </p>
       <div class="hero-cta-row">
         <a href="#protocol-quiz" class="btn-hero-primary" id="hero-cta-primary">
@@ -156,16 +156,15 @@
             Rețelele celulare cedează tocmai când ai nevoie de ele cel mai mult.
           </h2>
           <p class="paru-lead">
-            O furtună severă, o pană de curent extinsă, un incendiu de vegetație — turnurile GSM sunt printre primele
-            infrastructuri care pică. Dacă locuiești la munte, în zone rurale sau chiar la marginea unui oraș,
+            O furtună severă, o pană de curent extinsă, un conflict armat — turnurile GSM sunt printre primele
+            infrastructuri care cedează. Dacă locuiești la munte, în zone rurale sau chiar la marginea unui oraș,
             acoperirea mobilă este oricum precară.
             <br><br>
-            O strategie solidă de comunicații se construiește pe patru straturi — planul cunoscut drept <span
-              class="glossary-term" data-term="paru">PARU</span> (Principal, Alternativ, Rezervă, Urgență). Rețelele
-            <span class="glossary-term" data-term="lora">LoRa</span> Mesh sunt utilizate de membrii comunității RO-MESH
-            exact pentru a asigura nivelurile de Alternativ și
-            Urgență. Ele funcționează complet offline, direct de la dispozitiv la dispozitiv, fără să depindă de
-            furnizori de internet sau infrastructură comercială.
+            Planul <span class="glossary-term" data-term="paru">PARU</span> — <strong>P</strong>rincipal,
+            <strong>A</strong>lternativ, <strong>R</strong>ezervă, <strong>U</strong>rgență — este cadrul de comunicații
+            reziliente adoptat și de comunitatea civilă. RO-MESH acoperă nivelurile <strong>Alternativ</strong> și
+            <strong>Urgență</strong>: funcționează complet offline, direct de la dispozitiv la dispozitiv, fără să
+            depindă de niciun operator sau furnizor comercial.
           </p>
         </div>
 
@@ -173,12 +172,13 @@
           <!-- P — Plan -->
           <div class="paru-card" id="paru-plan">
             <span class="paru-letter" aria-hidden="true">P</span>
-            <p class="paru-card-title">Plan</p>
-            <p class="paru-card-role">Comunicarea primară</p>
+            <p class="paru-card-title">Principal</p>
+            <p class="paru-card-role">Comunicare de rutină</p>
             <p class="paru-card-desc">
-              Telefonul mobil și internetul de bandă largă — mijloacele obișnuite, atâta timp cât infrastructura
-              comercială funcționează.
+              Telefonul mobil, internetul și aplicațiile obișnuite — funcționează perfect atât timp cât infrastructura
+              comercială este intactă. Primul recurs pentru orice comunicare zilnică.
             </p>
+            <span class="paru-badge">Internet</span><span class="paru-badge">Celular</span>
           </div>
 
           <!-- A — Alternativ -->
@@ -187,8 +187,8 @@
             <p class="paru-card-title">Alternativ</p>
             <p class="paru-card-role">Rețea Mesh Radio</p>
             <p class="paru-card-desc">
-              Când rețeaua mobilă devine lentă sau instabilă, nodul mesh preia comunicarea locală — mesaje text,
-              telemetrie, coordonare.
+              Când rețeaua mobilă devine lentă, supraîncărcată sau instabilă, nodul mesh preia comunicarea locală —
+              mesaje text, coordonare și telemetrie, fără să consume internet.
             </p>
             <span class="paru-badge">✦ RO-MESH</span>
           </div>
@@ -197,11 +197,12 @@
           <div class="paru-card" id="paru-rezerva">
             <span class="paru-letter" aria-hidden="true">R</span>
             <p class="paru-card-title">Rezervă</p>
-            <p class="paru-card-role">Radio analogic / satelit</p>
+            <p class="paru-card-role">Radio analogic / radio digital</p>
             <p class="paru-card-desc">
-              Stații radio portabile PMR/VHF sau comunicare prin satelit (ex. Garmin inReach) pentru situații extreme cu
-              acoperire zero.
+              Stații PMR/VHF portabile sau radio digital (ex. DMR) intră în joc când acoperirea mesh este
+              insuficientă. Nu depind de nicio infrastructură și funcționează cu baterii sau energii alternative.
             </p>
+            <span class="paru-badge">PMR</span><span class="paru-badge">VHF</span>
           </div>
 
           <!-- U — Urgență -->
@@ -210,9 +211,9 @@
             <p class="paru-card-title">Urgență</p>
             <p class="paru-card-role">Mesh complet offline</p>
             <p class="paru-card-desc">
-              Infrastructura comercială complet căzută. Nodurile mesh <span class="glossary-term"
-                data-term="lora">LoRa</span> continuă să funcționeze pe baterie sau solar,
-              fără niciun server.
+              Infrastructura comercială a căzut complet. Repetoarele <span class="glossary-term"
+                data-term="lora">LoRa</span> Mesh continuă să funcționeze pe baterie sau solar — fără server, fără
+              internet, fără operator. Ultimul strat de comunicare rămâne activ.
             </p>
             <span class="paru-badge">✦ RO-MESH</span>
           </div>
@@ -297,360 +298,393 @@
     <section class="steps-section" id="cum-functioneaza" aria-labelledby="steps-heading">
       <div class="steps-inner">
         <p class="eyebrow" aria-hidden="true">Ghid rapid</p>
-        <h2 class="steps-headline" id="steps-heading">Cum funcționează, <span style="color:var(--color-accent)">exact?</span></h2>
+        <h2 class="steps-headline" id="steps-heading">Cum funcționează, <span
+            style="color:var(--color-accent)">exact?</span></h2>
         <p class="steps-lead">Principiul este simplu:</p>
 
         <ol class="steps-grid" role="list">
           <li class="step-card" id="step-1">
             <div class="step-number-bubble" aria-hidden="true">1</div>
             <h3 class="step-card-title">Dispozitiv Radio <span class="glossary-term" data-term="lora">LoRa</span></h3>
-            <p class="step-card-desc">Ai nevoie de un dispozitiv radio LoRa mic — un modul ESP32 sau nRF52 cu antenă. Costă circa 150 RON și se comandă online în câteva clicuri.</p>
+            <p class="step-card-desc">Ai nevoie de un dispozitiv radio LoRa mic — un modul ESP32 sau nRF52 cu antenă.
+              Costă circa 150 RON și se comandă online în câteva clicuri.</p>
           </li>
           <li class="step-card" id="step-2">
             <div class="step-number-bubble" aria-hidden="true">2</div>
             <h3 class="step-card-title">Conectează-l la telefon</h3>
-            <p class="step-card-desc">Asociezi dispozitivul cu telefonul tău prin Bluetooth — la fel cum conectezi o cască wireless. Nicio configurare complicată.</p>
+            <p class="step-card-desc">Asociezi dispozitivul cu telefonul tău prin Bluetooth — la fel cum conectezi o
+              cască wireless. Nicio configurare complicată.</p>
           </li>
           <li class="step-card" id="step-3">
             <div class="step-number-bubble" aria-hidden="true">3</div>
             <h3 class="step-card-title">Aplicație gratuită</h3>
-            <p class="step-card-desc">Deschizi aplicația mobilă gratuită (iOS sau Android) și ești gata. Interfața este simplă — oricine poate folosi, fără cunoștințe tehnice.</p>
+            <p class="step-card-desc">Deschizi aplicația mobilă gratuită (iOS sau Android) și ești gata. Interfața este
+              simplă — oricine poate folosi, fără cunoștințe tehnice.</p>
           </li>
           <li class="step-card" id="step-4">
             <div class="step-number-bubble" aria-hidden="true">4</div>
             <h3 class="step-card-title">Trimite mesajul</h3>
-            <p class="step-card-desc">Mesajul călătorește hop-cu-hop prin rețeaua mesh, ajungând la destinatar prin repetoare — pe km întregi, la munte sau în urgențe.</p>
+            <p class="step-card-desc">Mesajul călătorește hop-cu-hop prin rețeaua mesh, ajungând la destinatar prin
+              repetoare — pe km întregi, la munte sau în urgențe.</p>
           </li>
         </ol>
 
         <div class="steps-reassurance">
           <div class="reassurance-item">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+            </svg>
             <strong>Fără internet</strong>
           </div>
           <div class="reassurance-item">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+            </svg>
             <strong>Fără cartelă SIM</strong>
           </div>
           <div class="reassurance-item">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1.42 9a15.91 15.91 0 0 1 21.16 0"/><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1.42 9a15.91 15.91 0 0 1 21.16 0" />
+              <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+              <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+            </svg>
             <strong>Fără Wi-Fi</strong>
           </div>
-          <p class="reassurance-tagline">Conectezi dispozitivul radio la telefon prin Bluetooth — și ești deja în rețea.</p>
+          <p class="reassurance-tagline">Conectezi dispozitivul radio la telefon prin Bluetooth — și ești deja în rețea.
+          </p>
         </div>
-    <!-- ══════════════════════════════════════════════════════════════════════
+        <!-- ══════════════════════════════════════════════════════════════════════
          5. CUI SE ADRESEAZĂ?
     ══════════════════════════════════════════════════════════════════════════ -->
-    <section class="audience-section" id="cui-se-adreseaza" aria-labelledby="audience-heading">
-      <div class="audience-inner">
-        <p class="eyebrow" aria-hidden="true">Comunitate</p>
-        <h2 class="audience-headline" id="audience-heading">Pentru cine este RO-MESH<span style="color:var(--color-accent)">?</span></h2>
-        <p class="audience-lead">RO-MESH este pentru oricine vrea să comunice independent de internet sau rețeaua mobilă.</p>
+        <section class="audience-section" id="cui-se-adreseaza" aria-labelledby="audience-heading">
+          <div class="audience-inner">
+            <p class="eyebrow" aria-hidden="true">Comunitate</p>
+            <h2 class="audience-headline" id="audience-heading">Pentru cine este RO-MESH<span
+                style="color:var(--color-accent)">?</span></h2>
+            <p class="audience-lead">RO-MESH este pentru oricine vrea să comunice independent de internet sau rețeaua
+              mobilă.</p>
 
-        <div class="audience-grid-new">
+            <div class="audience-grid-new">
 
-          <!-- Card 1: Familii -->
-          <div class="audience-card-new" id="audience-familii">
-            <div class="audience-svg-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
+              <!-- Card 1: Familii -->
+              <div class="audience-card-new" id="audience-familii">
+                <div class="audience-svg-icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <p class="audience-card-title-new">Familii și Cetățeni</p>
+                <p class="audience-card-desc-new">care vor să fie pregătiți pentru situații de criză</p>
+              </div>
+
+              <!-- Card 2: Cartiere -->
+              <div class="audience-card-new" id="audience-cartiere">
+                <div class="audience-svg-icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                </div>
+                <p class="audience-card-title-new">Cartiere și Sate</p>
+                <p class="audience-card-desc-new">care vor să construiască împreună o rețea locală independentă</p>
+              </div>
+
+              <!-- Card 3: Voluntari -->
+              <div class="audience-card-new" id="audience-voluntari">
+                <div class="audience-svg-icon" aria-hidden="true">
+                  <!-- Crucea Roșie / simbol medical urgență -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="2" width="6" height="20" rx="1" />
+                    <rect x="2" y="9" width="20" height="6" rx="1" />
+                  </svg>
+                </div>
+                <p class="audience-card-title-new">Voluntari și Echipe de Urgență</p>
+                <p class="audience-card-desc-new">grupe de prim ajutor, Crucea Roșie și echipe de veghe din cartier</p>
+              </div>
+
+              <!-- Card 4: Drumeți -->
+              <div class="audience-card-new" id="audience-drumeti">
+                <div class="audience-svg-icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                  </svg>
+                </div>
+                <p class="audience-card-title-new">Drumeți și Exploratori</p>
+                <p class="audience-card-desc-new">camperi, alpiniști și pasionați de natură care pleacă departe de
+                  semnal</p>
+              </div>
+
+              <!-- Card 5: Radioamatori -->
+              <div class="audience-card-new" id="audience-radioamatori">
+                <div class="audience-svg-icon" aria-hidden="true">
+                  <!-- Simbol internațional sursă radio: antenă cu arce bilaterale -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="12" x2="12" y2="22" />
+                    <path d="M16.24 7.76a6 6 0 0 1 0 8.49" />
+                    <path d="M7.76 7.76a6 6 0 0 0 0 8.49" />
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                    <path d="M4.93 4.93a10 10 0 0 0 0 14.14" />
+                  </svg>
+                </div>
+                <p class="audience-card-title-new">Radioamatori și Makeri</p>
+                <p class="audience-card-desc-new">și pasionați de tehnologie care vor să ajute la extinderea rețelei
+                  naționale</p>
+              </div>
+
+              <!-- Card 6: Toată lumea — highlighted -->
+              <div class="audience-card-new audience-card-highlight" id="audience-toti">
+                <div class="audience-svg-icon" aria-hidden="true">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <p class="audience-card-title-new">Toată lumea</p>
+                <p class="audience-card-desc-new">Deschis, gratuit și non-comercial</p>
+              </div>
+
             </div>
-            <p class="audience-card-title-new">Familii și Cetățeni</p>
-            <p class="audience-card-desc-new">care vor să fie pregătiți pentru situații de criză</p>
           </div>
+        </section>
 
-          <!-- Card 2: Cartiere -->
-          <div class="audience-card-new" id="audience-cartiere">
-            <div class="audience-svg-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9 22 9 12 15 12 15 22"/>
-              </svg>
-            </div>
-            <p class="audience-card-title-new">Cartiere și Sate</p>
-            <p class="audience-card-desc-new">care vor să construiască împreună o rețea locală independentă</p>
+        <section class="tech-section">
+          <div class="container">
+            <details class="tech-details" id="tech-specs-panel">
+              <summary class="tech-summary">
+                [ / / ] ACCESS RESTRICTED: DECRYPT TECH_SPECS
+              </summary>
+              <div class="tech-appeal">
+                &gt; BANDA_ISM: Operare complet liberă de licență în banda 868 MHz (EU).<br>
+                &gt; ANTENE: Suport nativ pentru configurații personalizate (SMA/IPEX).<br>
+                &gt; PUTERE: Consum extrem de redus, măsurat în ordinul miliwaților.<br>
+                &gt; MQTT_BRIDGE: Trimitere de date via MQTT direct în sisteme de Home Automation (ex: Home
+                Assistant).<br>
+                &gt; GPIO_TELEMETRIE: Senzori I²C/SPI conectabili direct la nodul mesh (temperatură, umiditate,
+                GPS).<br>
+                &gt; SOLAR_READY: Consum mediu sub 50 mW în mod repetitor — autonomie pe panou solar de 5W.<br>
+                &gt; MODULATIE: LoRa (Long Range) Chirp Spread Spectrum pentru acoperire kilometrică.
+              </div>
+            </details>
           </div>
+        </section>
 
-          <!-- Card 3: Voluntari -->
-          <div class="audience-card-new" id="audience-voluntari">
-            <div class="audience-svg-icon" aria-hidden="true">
-              <!-- Crucea Roșie / simbol medical urgență -->
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="2" width="6" height="20" rx="1"/>
-                <rect x="2" y="9" width="20" height="6" rx="1"/>
-              </svg>
-            </div>
-            <p class="audience-card-title-new">Voluntari și Echipe de Urgență</p>
-            <p class="audience-card-desc-new">grupe de prim ajutor, Crucea Roșie și echipe de veghe din cartier</p>
-          </div>
-
-          <!-- Card 4: Drumeți -->
-          <div class="audience-card-new" id="audience-drumeti">
-            <div class="audience-svg-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
-              </svg>
-            </div>
-            <p class="audience-card-title-new">Drumeți și Exploratori</p>
-            <p class="audience-card-desc-new">camperi, alpiniști și pasionați de natură care pleacă departe de semnal</p>
-          </div>
-
-          <!-- Card 5: Radioamatori -->
-          <div class="audience-card-new" id="audience-radioamatori">
-            <div class="audience-svg-icon" aria-hidden="true">
-              <!-- Simbol internațional sursă radio: antenă cu arce bilaterale -->
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="12" x2="12" y2="22"/>
-                <path d="M16.24 7.76a6 6 0 0 1 0 8.49"/>
-                <path d="M7.76 7.76a6 6 0 0 0 0 8.49"/>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-                <path d="M4.93 4.93a10 10 0 0 0 0 14.14"/>
-              </svg>
-            </div>
-            <p class="audience-card-title-new">Radioamatori și Makeri</p>
-            <p class="audience-card-desc-new">și pasionați de tehnologie care vor să ajute la extinderea rețelei naționale</p>
-          </div>
-
-          <!-- Card 6: Toată lumea — highlighted -->
-          <div class="audience-card-new audience-card-highlight" id="audience-toti">
-            <div class="audience-svg-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-              </svg>
-            </div>
-            <p class="audience-card-title-new">Toată lumea</p>
-            <p class="audience-card-desc-new">Deschis, gratuit și non-comercial</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="tech-section">
-      <div class="container">
-        <details class="tech-details" id="tech-specs-panel">
-          <summary class="tech-summary">
-            [ / / ] ACCESS RESTRICTED: DECRYPT TECH_SPECS
-          </summary>
-          <div class="tech-appeal">
-            &gt; BANDA_ISM: Operare complet liberă de licență în banda 868 MHz (EU).<br>
-            &gt; ANTENE: Suport nativ pentru configurații personalizate (SMA/IPEX).<br>
-            &gt; PUTERE: Consum extrem de redus, măsurat în ordinul miliwaților.<br>
-            &gt; MQTT_BRIDGE: Trimitere de date via MQTT direct în sisteme de Home Automation (ex: Home Assistant).<br>
-            &gt; GPIO_TELEMETRIE: Senzori I²C/SPI conectabili direct la nodul mesh (temperatură, umiditate, GPS).<br>
-            &gt; SOLAR_READY: Consum mediu sub 50 mW în mod repetitor — autonomie pe panou solar de 5W.<br>
-            &gt; MODULATIE: LoRa (Long Range) Chirp Spread Spectrum pentru acoperire kilometrică.
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════════════════════════════════
+        <!-- ══════════════════════════════════════════════════════════════════════
          5.5 QUIZ
     ══════════════════════════════════════════════════════════════════════════ -->
-    <section id="protocol-quiz" class="container quiz-section">
-      <div class="quiz-header">
-        <h2>Nu știi cu ce să începi? Află protocolul potrivit ție.</h2>
-        <div class="mode-toggle">
-          <span id="label-simple" class="active">Simplu</span>
-          <label class="switch">
-            <input type="checkbox" id="quiz-mode-toggle" aria-label="Comută modul întrebărilor">
-            <span class="slider round"></span>
-          </label>
-          <span id="label-advanced">Avansat</span>
-        </div>
-      </div>
-      <div id="quiz-content">
-        <h3 id="quiz-question" class="quiz-question-text"></h3>
-        <div id="quiz-answers" class="quiz-options"></div>
-      </div>
-      <div id="quiz-result" class="quiz-result-container hidden">
-      </div>
-    </section>
+        <section id="protocol-quiz" class="container quiz-section">
+          <div class="quiz-header">
+            <h2>Nu știi cu ce să începi? Află protocolul potrivit ție.</h2>
+            <div class="mode-toggle">
+              <span id="label-simple" class="active">Simplu</span>
+              <label class="switch">
+                <input type="checkbox" id="quiz-mode-toggle" aria-label="Comută modul întrebărilor">
+                <span class="slider round"></span>
+              </label>
+              <span id="label-advanced">Avansat</span>
+            </div>
+          </div>
+          <div id="quiz-content">
+            <h3 id="quiz-question" class="quiz-question-text"></h3>
+            <div id="quiz-answers" class="quiz-options"></div>
+          </div>
+          <div id="quiz-result" class="quiz-result-container hidden">
+          </div>
+        </section>
 
-    <!-- ══════════════════════════════════════════════════════════════════════
+        <!-- ══════════════════════════════════════════════════════════════════════
          6. PROTOCOALE — Comparison Cards (neschimbate)
     ══════════════════════════════════════════════════════════════════════════ -->
-    <section class="protocols-section master-section" id="protocoale" aria-labelledby="protocols-heading">
-      <div class="container">
-        <div class="section-header">
-          <h2 id="protocols-heading">Sistemele de Operare Mesh</h2>
-          <p>Trei abordări diferite. Aceeași filosofie deschisă.</p>
-        </div>
-
-        <div class="protocol-cards">
-
-          <!-- MeshCore -->
-          <article class="protocol-card bg-gradient-accent" id="card-meshcore">
-            <h2 class="protocol-title">MeshCore</h2>
-            <p class="protocol-subtitle">Structurat, eficient pe roluri, scalabil.</p>
-
-            <div class="metrics">
-              <div class="metric">
-                <span class="metric-label">Dificultate instalare</span>
-                <span class="metric-val val-good">Scăzută</span>
-              </div>
-              <div class="metric">
-                <span class="metric-label">Complexitate</span>
-                <span class="metric-val val-good">Scăzută</span>
-              </div>
-              <div class="metric">
-                <span class="metric-label">Disponibilitate rețea</span>
-                <span class="metric-val val-bad">Scăzută</span>
-              </div>
+        <section class="protocols-section master-section" id="protocoale" aria-labelledby="protocols-heading">
+          <div class="container">
+            <div class="section-header">
+              <h2 id="protocols-heading">Sistemele de Operare Mesh</h2>
+              <p>Trei abordări diferite. Aceeași filosofie deschisă.</p>
             </div>
 
-            <div class="card-pros">
-              <h3>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                Avantaje
-              </h3>
-              <ul class="pros-cons-list">
-                <li>Rutare structurată (Companioane vs. Repetoare) care reduce drastic congestia.</li>
-                <li>Suportă rețele uriașe (până la 64 de salturi / hops).</li>
-                <li>Perfect pentru infrastructură fixă, permanentă.</li>
-              </ul>
+            <div class="protocol-cards">
+
+              <!-- MeshCore -->
+              <article class="protocol-card bg-gradient-accent" id="card-meshcore">
+                <h2 class="protocol-title">MeshCore</h2>
+                <p class="protocol-subtitle">Structurat, eficient pe roluri, scalabil.</p>
+
+                <div class="metrics">
+                  <div class="metric">
+                    <span class="metric-label">Dificultate instalare</span>
+                    <span class="metric-val val-good">Scăzută</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Complexitate</span>
+                    <span class="metric-val val-good">Scăzută</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Disponibilitate rețea</span>
+                    <span class="metric-val val-bad">Scăzută</span>
+                  </div>
+                </div>
+
+                <div class="card-pros">
+                  <h3>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    Avantaje
+                  </h3>
+                  <ul class="pros-cons-list">
+                    <li>Rutare structurată (Companioane vs. Repetoare) care reduce drastic congestia.</li>
+                    <li>Suportă rețele uriașe (până la 64 de salturi / hops).</li>
+                    <li>Perfect pentru infrastructură fixă, permanentă.</li>
+                  </ul>
+                </div>
+
+                <div class="card-cons">
+                  <h3>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    Dezavantaje
+                  </h3>
+                  <ul class="pros-cons-list">
+                    <li>Necesită o planificare deliberată pentru amplasarea repetoarelor.</li>
+                    <li>Incompatibil cu celelalte protocoale (încă).</li>
+                  </ul>
+                </div>
+
+                <div class="mt-auto pt-8">
+                  <a href="/meshcore/" class="btn-action" id="cta-meshcore">Vezi Detalii MeshCore</a>
+                </div>
+              </article>
+
+              <!-- Meshtastic -->
+              <article class="protocol-card" id="card-meshtastic">
+                <h2 class="protocol-title">Meshtastic</h2>
+                <p class="protocol-subtitle">Ad-hoc, ideal pentru grupuri mobile, comunitate masivă.</p>
+
+                <div class="metrics">
+                  <div class="metric">
+                    <span class="metric-label">Dificultate instalare</span>
+                    <span class="metric-val val-neutral">Medie</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Complexitate</span>
+                    <span class="metric-val val-bad">Ridicată</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Disponibilitate rețea</span>
+                    <span class="metric-val val-good">Ridicată</span>
+                  </div>
+                </div>
+
+                <div class="card-pros">
+                  <h3>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    Avantaje
+                  </h3>
+                  <ul class="pros-cons-list">
+                    <li>Rețea true peer-to-peer mesh excelentă pentru drumeții.</li>
+                    <li>Prietenos pentru începători, cu aplicații excelente iOS/Android.</li>
+                    <li>Include partajare locație (GPS) și telemetrie nativ.</li>
+                  </ul>
+                </div>
+
+                <div class="card-cons">
+                  <h3>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    Dezavantaje
+                  </h3>
+                  <ul class="pros-cons-list">
+                    <li>Limită redusă de salturi (de obicei max 7).</li>
+                    <li>Rutarea de tip flood cauzează timp de antenă ridicat în zone aglomerate.</li>
+                    <li>Incompatibil cu celelalte protocoale (încă).</li>
+                  </ul>
+                </div>
+
+                <div class="mt-auto pt-8">
+                  <a href="/meshtastic/" class="btn-action" id="cta-meshtastic">Vezi Detalii Meshtastic</a>
+                </div>
+              </article>
+
+              <!-- Reticulum -->
+              <article class="protocol-card" id="card-reticulum">
+                <h2 class="protocol-title">Reticulum</h2>
+                <p class="protocol-subtitle">Criptografic, agnostic de mediu, securitate avansată.</p>
+
+                <div class="metrics">
+                  <div class="metric">
+                    <span class="metric-label">Dificultate instalare</span>
+                    <span class="metric-val val-bad">Ridicată</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Complexitate</span>
+                    <span class="metric-val val-bad">Ridicată</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Disponibilitate rețea</span>
+                    <span class="metric-val val-bad">Scăzută</span>
+                  </div>
+                </div>
+
+                <div class="card-pros">
+                  <h3>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    Avantaje
+                  </h3>
+                  <ul class="pros-cons-list">
+                    <li>Focalizare avansată pe securitate (anonimat, transfer de fișiere).</li>
+                    <li>Stivă extrem de flexibilă, putând interconecta <span class="glossary-term"
+                        data-term="lora">LoRa</span>, WiFi, internet.</li>
+                  </ul>
+                </div>
+
+                <div class="card-cons">
+                  <h3>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    Dezavantaje
+                  </h3>
+                  <ul class="pros-cons-list">
+                    <li>Curbă de învățare abruptă, necesitând configurare și asamblare avansată.</li>
+                    <li>Incompatibil cu celelalte protocoale (încă).</li>
+                  </ul>
+                </div>
+
+                <div class="mt-auto pt-8">
+                  <a href="/reticulum/" class="btn-action" id="cta-reticulum">Vezi Detalii Reticulum</a>
+                </div>
+              </article>
+
             </div>
-
-            <div class="card-cons">
-              <h3>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-                Dezavantaje
-              </h3>
-              <ul class="pros-cons-list">
-                <li>Necesită o planificare deliberată pentru amplasarea repetoarelor.</li>
-                <li>Incompatibil cu celelalte protocoale (încă).</li>
-              </ul>
-            </div>
-
-            <div class="mt-auto pt-8">
-              <a href="/meshcore/" class="btn-action" id="cta-meshcore">Vezi Detalii MeshCore</a>
-            </div>
-          </article>
-
-          <!-- Meshtastic -->
-          <article class="protocol-card" id="card-meshtastic">
-            <h2 class="protocol-title">Meshtastic</h2>
-            <p class="protocol-subtitle">Ad-hoc, ideal pentru grupuri mobile, comunitate masivă.</p>
-
-            <div class="metrics">
-              <div class="metric">
-                <span class="metric-label">Dificultate instalare</span>
-                <span class="metric-val val-neutral">Medie</span>
-              </div>
-              <div class="metric">
-                <span class="metric-label">Complexitate</span>
-                <span class="metric-val val-bad">Ridicată</span>
-              </div>
-              <div class="metric">
-                <span class="metric-label">Disponibilitate rețea</span>
-                <span class="metric-val val-good">Ridicată</span>
-              </div>
-            </div>
-
-            <div class="card-pros">
-              <h3>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                Avantaje
-              </h3>
-              <ul class="pros-cons-list">
-                <li>Rețea true peer-to-peer mesh excelentă pentru drumeții.</li>
-                <li>Prietenos pentru începători, cu aplicații excelente iOS/Android.</li>
-                <li>Include partajare locație (GPS) și telemetrie nativ.</li>
-              </ul>
-            </div>
-
-            <div class="card-cons">
-              <h3>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-                Dezavantaje
-              </h3>
-              <ul class="pros-cons-list">
-                <li>Limită redusă de salturi (de obicei max 7).</li>
-                <li>Rutarea de tip flood cauzează timp de antenă ridicat în zone aglomerate.</li>
-                <li>Incompatibil cu celelalte protocoale (încă).</li>
-              </ul>
-            </div>
-
-            <div class="mt-auto pt-8">
-              <a href="/meshtastic/" class="btn-action" id="cta-meshtastic">Vezi Detalii Meshtastic</a>
-            </div>
-          </article>
-
-          <!-- Reticulum -->
-          <article class="protocol-card" id="card-reticulum">
-            <h2 class="protocol-title">Reticulum</h2>
-            <p class="protocol-subtitle">Criptografic, agnostic de mediu, securitate avansată.</p>
-
-            <div class="metrics">
-              <div class="metric">
-                <span class="metric-label">Dificultate instalare</span>
-                <span class="metric-val val-bad">Ridicată</span>
-              </div>
-              <div class="metric">
-                <span class="metric-label">Complexitate</span>
-                <span class="metric-val val-bad">Ridicată</span>
-              </div>
-              <div class="metric">
-                <span class="metric-label">Disponibilitate rețea</span>
-                <span class="metric-val val-bad">Scăzută</span>
-              </div>
-            </div>
-
-            <div class="card-pros">
-              <h3>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-                Avantaje
-              </h3>
-              <ul class="pros-cons-list">
-                <li>Focalizare avansată pe securitate (anonimat, transfer de fișiere).</li>
-                <li>Stivă extrem de flexibilă, putând interconecta <span class="glossary-term"
-                    data-term="lora">LoRa</span>, WiFi, internet.</li>
-              </ul>
-            </div>
-
-            <div class="card-cons">
-              <h3>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-                Dezavantaje
-              </h3>
-              <ul class="pros-cons-list">
-                <li>Curbă de învățare abruptă, necesitând configurare și asamblare avansată.</li>
-                <li>Incompatibil cu celelalte protocoale (încă).</li>
-              </ul>
-            </div>
-
-            <div class="mt-auto pt-8">
-              <a href="/reticulum/" class="btn-action" id="cta-reticulum">Vezi Detalii Reticulum</a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
+          </div>
+        </section>
 
   </main>
 
