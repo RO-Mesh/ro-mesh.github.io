@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.20.0
+- Added scroll-to-top button on all pages: index, faq, dictionar, harta, comunitati, meshcore, meshtastic, reticulum.
+- Button appears bottom-right after scrolling 300px, with smooth scroll back to top.
+- Styles in `css/scroll-top.css` (shared), logic in `js/scroll-top.js` (self-injecting, no dependencies).
+
 ## v0.19.0
 - Added new standalone `faq.html` page with 14 questions across 4 categories: Despre RO-MESH, Tehnic, Protocoale, Comunitate.
 - "Ce este RO-MESH?" written in StoryBrand framework, connecting the RO-MESH name to RO-Alert for social recall in PARU scenarios.
