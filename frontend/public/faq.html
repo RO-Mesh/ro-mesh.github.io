@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ro" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Întrebări Frecvente — RO-MESH</title>
+  <meta name="description"
+    content="Răspunsuri la cele mai comune întrebări despre RO-MESH: ce este, cum funcționează, ce echipament îți trebuie și cum te poți alătura comunității." />
+
+  <!-- ── PWA ──────────────────────────────────────────────────────────────── -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#2DC653" />
+
+  <!-- ── Fonts ──────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <!-- Anti-FOUC -->
+  <script>
+    (function () {
+      'use strict';
+      var stored = localStorage.getItem('ro-mesh-theme');
+      if (stored === 'dark' || stored === 'light') {
+        document.documentElement.setAttribute('data-theme', stored);
+      }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="/css/style.css" />
+
+  <style>
+    /* ── FAQ Page Styles ─────────────────────────────────────────────────── */
+    .faq-hero {
+      padding: 6rem 1.5rem 3rem;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-hero .eyebrow {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .faq-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .faq-hero h1 .accent {
+      color: var(--color-accent);
+    }
+
+    .faq-hero p {
+      color: var(--color-text-muted);
+      font-size: 1.1rem;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* ── FAQ Body ──────────────────────────────────────────────────────────── */
+    .faq-body {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 6rem;
+    }
+
+    /* ── Category Group ────────────────────────────────────────────────────── */
+    .faq-group {
+      margin-bottom: 3rem;
+    }
+
+    .faq-group-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .faq-group-label svg {
+      flex-shrink: 0;
+    }
+
+    /* ── Accordion Item ────────────────────────────────────────────────────── */
+    .faq-item {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .faq-item:first-of-type {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .faq-item + .faq-group .faq-item:first-of-type {
+      border-top: none;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.1rem 0;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--color-text);
+      font-family: inherit;
+      transition: color 0.2s;
+    }
+
+    .faq-question:hover {
+      color: var(--color-accent);
+    }
+
+    .faq-question .faq-chevron {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      transition: transform 0.25s ease;
+      color: var(--color-text-muted);
+    }
+
+    .faq-item.open .faq-question .faq-chevron {
+      transform: rotate(180deg);
+      color: var(--color-accent);
+    }
+
+    .faq-item.open .faq-question {
+      color: var(--color-accent);
+    }
+
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 600px;
+    }
+
+    .faq-answer-inner {
+      padding-bottom: 1.25rem;
+      color: var(--color-text-muted);
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+
+    .faq-answer-inner p + p {
+      margin-top: 0.75rem;
+    }
+
+    .faq-answer-inner strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .faq-answer-inner a {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .faq-answer-inner .tag {
+      display: inline-block;
+      background: var(--color-surface-2, rgba(255,255,255,0.06));
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 0.1em 0.5em;
+      font-size: 0.85em;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--color-accent);
+    }
+
+    /* ── CTA Block at bottom ───────────────────────────────────────────────── */
+    .faq-cta {
+      margin-top: 4rem;
+      padding: 2.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      text-align: center;
+      background: var(--color-surface-1, rgba(255,255,255,0.03));
+    }
+
+    .faq-cta h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-cta p {
+      color: var(--color-text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-faq-primary {
+      display: inline-block;
+      padding: 0.65rem 1.4rem;
+      background: var(--color-accent);
+      color: #000;
+      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: opacity 0.2s;
+    }
+
+    .btn-faq-primary:hover {
+      opacity: 0.85;
+    }
+
+    .btn-faq-secondary {
+      display: inline-block;
+      padding: 0.65rem 1.4rem;
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      font-weight: 500;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-faq-secondary:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Offline Banner -->
+  <div class="offline-banner" hidden id="offline-banner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round">
+      <line x1="1" y1="1" x2="23" y2="23"></line>
+      <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+      <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+      <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+      <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+      <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+      <line x1="12" y1="20" x2="12.01" y2="20"></line>
+    </svg>
+    <span>Mod offline activat. Pagina rulează din memoria cache locală.</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 17L12 22L22 17" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 12L12 17L22 12" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <span class="logo-text">RO-<span class="logo-accent">MESH</span></span> <span
+          class="status-pill alpha">alpha</span>
+      </a>
+
+      <div class="theme-toggle" id="theme-toggle" role="group" aria-label="Comutați tema interfeței">
+        <button class="theme-btn" id="theme-auto" data-theme-val="" title="Automatic — urmează tema OS"
+          aria-pressed="true" aria-label="Temă automată (sistem)">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+          </svg>
+        </button>
+        <button class="theme-btn" id="theme-light" data-theme-val="light" title="Luminos" aria-pressed="false"
+          aria-label="Temă luminoasă">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </svg>
+        </button>
+        <button class="theme-btn" id="theme-dark" data-theme-val="dark" title="Întunecat" aria-pressed="false"
+          aria-label="Temă întunecată">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+    <div class="faq-hero">
+      <p class="eyebrow" aria-hidden="true">Ai o întrebare?</p>
+      <h1>Întrebări <span class="accent">Frecvente</span></h1>
+      <p>Tot ce trebuie să știi despre RO-MESH — de ce există, cum funcționează și cum te poți alătura.</p>
+    </div>
+
+    <!-- ── FAQ Body ───────────────────────────────────────────────────────── -->
+    <div class="faq-body">
+
+      <!-- ════════════════════════════════════════════════════════════════════
+           CATEGORIA 1: DESPRE RO-MESH
+      ════════════════════════════════════════════════════════════════════════ -->
+      <div class="faq-group" id="faq-despre">
+        <p class="faq-group-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4M12 16h.01" />
+          </svg>
+          Despre RO-MESH
+        </p>
+
+        <!-- Q1 -->
+        <div class="faq-item" id="faq-ce-este">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-ce-este-answer">
+            Ce este RO-MESH?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-ce-este-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Ai auzit de <strong>RO-Alert</strong> — sistemul care îți trimite un mesaj de urgență pe telefon când
+                ești în pericol. Dar ce se întâmplă când telefonul nu mai funcționează?</p>
+              <p>RO-MESH este complementul offline al acelei idei. Numele nu este o coincidență: la fel cum RO-Alert
+                înseamnă că cineva îți trimite un semnal critic în momentul decisiv, <strong>RO-MESH înseamnă că tu
+                  poți transmite</strong> — cu familia, cu vecinii, cu comunitatea — chiar și atunci când rețeaua
+                mobilă a căzut complet.</p>
+              <p>Este o <strong>inițiativă voluntară și comunitară</strong>: fără companie în spate, fără abonament,
+                fără server central. Oameni din toată România care au instalat câte un nod radio — pe balcon, pe
+                acoperiș, la munte — și construiesc împreună o rețea care nu depinde de nimeni altcineva.</p>
+              <p>Când primești un RO-Alert și rămâi fără semnal — RO-MESH este planul tău de rezervă.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item" id="faq-cine-a-creat">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-cine-a-creat-answer">
+            Cine a creat RO-MESH?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-cine-a-creat-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Nimeni și toată lumea. Nu există o companie sau un fondator. RO-MESH este suma nodurilor instalate de
+                voluntari din România — fiecare nod adaugă acoperire rețelei întregii comunități.</p>
+              <p><strong>Tu ești RO-MESH.</strong> Dacă instalezi un nod, devii parte din rețea și o extinzi pentru cei
+                din jurul tău.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item" id="faq-alternativa-telefon">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-alternativa-telefon-answer">
+            RO-MESH înlocuiește telefonul?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-alternativa-telefon-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Nu — este un <strong>backup pentru situațiile în care telefonul nu mai funcționează</strong>. Conform
+                planului <a href="/#strategia-paru">PARU</a>, telefonul și internetul rămân comunicarea principală
+                (stratul <em>Principal</em>).</p>
+              <p>RO-MESH intră în scenă ca strat <strong>Alternativ</strong> (când rețeaua devine instabilă) și ca strat
+                <strong>Urgență</strong> (când infrastructura a căzut complet). Funcționează fără internet, fără SIM,
+                fără curent din rețea.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item" id="faq-gratuit">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-gratuit-answer">
+            Este gratuit?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-gratuit-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Da — software-ul, firmware-ul și aplicațiile mobile sunt gratuite și open-source. Plătești o singură
+                dată hardware-ul (dispozitivul radio, ~150 RON), după care nu există abonament, taxă de utilizare sau
+                cost lunar.</p>
+              <p>Nu există nicio companie care să îți vândă ceva. Rețeaua aparține comunității.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ════════════════════════════════════════════════════════════════════
+           CATEGORIA 2: TEHNIC
+      ════════════════════════════════════════════════════════════════════════ -->
+      <div class="faq-group" id="faq-tehnic">
+        <p class="faq-group-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
+          </svg>
+          Tehnic
+        </p>
+
+        <!-- Q5 -->
+        <div class="faq-item" id="faq-ce-trebuie">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-ce-trebuie-answer">
+            De ce am nevoie pentru a intra în rețea?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-ce-trebuie-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Trei lucruri:</p>
+              <p>
+                <strong>1. Un dispozitiv radio LoRa</strong> — un modul ESP32 sau nRF52 cu antenă. Costă aproximativ
+                <span class="tag">~150 RON</span> și se comandă online.<br>
+                <strong>2. O aplicație mobilă gratuită</strong> — disponibilă pe iOS și Android.<br>
+                <strong>3. O conexiune Bluetooth</strong> — legi dispozitivul la telefon, ca pe o cască wireless.
+              </p>
+              <p>Nu ai nevoie de internet, de cartelă SIM, de cont pe vreo platformă sau de cunoștințe tehnice avansate.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item" id="faq-distanta">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-distanta-answer">
+            Cât de departe ajunge semnalul?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-distanta-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>În teren deschis sau de la un repetor plasat pe deal/acoperiș, semnalul poate ajunge la
+                <strong>10–15 km</strong> de la nod la nod.</p>
+              <p>În mediu urban, distanța este mai mică din cauza obstacolelor. Dar mesajele călătoresc
+                <strong>hop-cu-hop</strong> prin rețea — dacă există repetoare intermediare, acoperirea se extinde la
+                distanțe mult mai mari, la nivel de județ sau regiune.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="faq-item" id="faq-ce-pot-face">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-ce-pot-face-answer">
+            Ce pot face cu RO-MESH?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-ce-pot-face-answer" role="region">
+            <div class="faq-answer-inner">
+              <p><strong>Mesaje text</strong> — în privat sau în grupuri de canal.<br>
+                <strong>Coordonate GPS</strong> — partajarea locației tale în rețea.<br>
+                <strong>Telemetrie</strong> — temperatură, umiditate, alte date de senzori.<br>
+                <strong>Semnale de urgență</strong> — alerte predefinite trimise la toți membrii activi din raza ta.
+              </p>
+              <p>Apeluri vocale: <strong>nu</strong> — LoRa este optimizat pentru mesaje mici și eficiente, nu pentru
+                audio.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="faq-item" id="faq-curent">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-curent-answer">
+            Funcționează fără curent electric?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-curent-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Da. Un nod de tip Companion consumă <strong>sub 100 mW</strong> și poate rula zile întregi pe o
+                baterie portabilă de telefon.</p>
+              <p>Un repetitor fix poate fi alimentat <strong>solar</strong> — un panou de 5W este suficient pentru
+                funcționare continuă. Acesta este exact scenariul pentru care este proiectat stratul
+                <strong>Urgență</strong> din planul PARU: rețeaua supraviețuiește penei de curent.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="faq-item" id="faq-frecventa">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-frecventa-answer">
+            Am nevoie de licență radio pentru a folosi rețeaua?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-frecventa-answer" role="region">
+            <div class="faq-answer-inner">
+              <p><strong>Nu.</strong> Dispozitivele LoRa operează în banda ISM de <span class="tag">868 MHz</span>
+                (Europa), care este liberă de licență pentru oricine. Nu ai nevoie de autorizație de radioamator sau de
+                niciun alt permis special.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ════════════════════════════════════════════════════════════════════
+           CATEGORIA 3: PROTOCOALE
+      ════════════════════════════════════════════════════════════════════════ -->
+      <div class="faq-group" id="faq-protocoale">
+        <p class="faq-group-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="12" x2="12" y2="22" />
+            <path d="M16.24 7.76a6 6 0 0 1 0 8.49" />
+            <path d="M7.76 7.76a6 6 0 0 0 0 8.49" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+            <path d="M4.93 4.93a10 10 0 0 0 0 14.14" />
+          </svg>
+          Protocoale
+        </p>
+
+        <!-- Q10 -->
+        <div class="faq-item" id="faq-ce-protocol">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-ce-protocol-answer">
+            Ce protocol să aleg — MeshCore, Meshtastic sau Reticulum?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-ce-protocol-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Dacă ești la început: <strong>MeshCore</strong> — simplu de instalat, eficient, ideal pentru
+                infrastructura permanentă de tip repetor și pentru uz comunitar la scară largă.</p>
+              <p><strong>Meshtastic</strong> este excelent pentru drumeții, grupuri mobile și oricine vrea o rețea
+                peer-to-peer ad-hoc cu aplicație mobilă prietenoasă.</p>
+              <p><strong>Reticulum</strong> se adresează utilizatorilor tehnici avansați care vor criptare robustă și
+                flexibilitate maximă de configurare.</p>
+              <p>Folosește <a href="/#protocol-quiz">quizul de pe pagina principală</a> pentru o recomandare
+                personalizată în câteva secunde.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q11 -->
+        <div class="faq-item" id="faq-compatibile">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-compatibile-answer">
+            Protocoalele sunt compatibile între ele?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-compatibile-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Nu, deocamdată. MeshCore, Meshtastic și Reticulum nu pot comunica direct între ele — sunt rețele
+                separate care folosesc același hardware LoRa, dar protocoale diferite la nivel software.</p>
+              <p>Interoperabilitatea este un subiect activ de discuție în comunitate, dar nu există încă o soluție
+                standard.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ════════════════════════════════════════════════════════════════════
+           CATEGORIA 4: COMUNITATE
+      ════════════════════════════════════════════════════════════════════════ -->
+      <div class="faq-group" id="faq-comunitate">
+        <p class="faq-group-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          Comunitate
+        </p>
+
+        <!-- Q12 -->
+        <div class="faq-item" id="faq-cum-ma-alatur">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-cum-ma-alatur-answer">
+            Cum mă alătur?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-cum-ma-alatur-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Trei pași:</p>
+              <p>
+                <strong>1. Alege un dispozitiv</strong> — consultă <a href="/#protocoale">pagina de protocoale</a>
+                pentru recomandări de hardware.<br>
+                <strong>2. Instalează firmware-ul</strong> — ghiduri pas cu pas disponibile pe paginile fiecărui
+                protocol.<br>
+                <strong>3. Conectează la telefon</strong> — prin Bluetooth, în câteva secunde.
+              </p>
+              <p>Dacă există deja noduri active în zona ta, ești imediat conectat la comunitate. <a
+                  href="/harta.html">Verifică harta</a> pentru acoperirea din județul tău.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q13 -->
+        <div class="faq-item" id="faq-fara-nod">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-fara-nod-answer">
+            Pot contribui fără să instalez un nod?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-fara-nod-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Da. Poți:</p>
+              <p>
+                — Documenta acoperirea locală și raporta noduri active din zona ta<br>
+                — Vorbi despre RO-MESH cu vecinii și prietenii tăi<br>
+                — Contribui la documentație sau traduceri pe GitHub<br>
+                — Instala un repetor fix pe acoperiș pentru a extinde acoperirea comunității
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Q14 -->
+        <div class="faq-item" id="faq-repetor">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-repetor-answer">
+            Ce este un repetor și de ce contează?
+            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="faq-answer" id="faq-repetor-answer" role="region">
+            <div class="faq-answer-inner">
+              <p>Un repetor este un nod fix, plasat în locație înaltă (acoperiș, turn, deal), care retransmite mesajele
+                altor noduri din rețea. Este coloana vertebrală a acoperirii pe distanțe lungi.</p>
+              <p>Un singur repetor bine plasat poate acoperi un întreg cartier sau un sat. Dacă ai acces la un acoperiș
+                sau la o locație înaltă, instalarea unui repetor este <strong>cea mai valoroasă contribuție</strong> pe
+                care o poți aduce comunității locale.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── CTA ─────────────────────────────────────────────────────────── -->
+      <div class="faq-cta" id="faq-cta">
+        <h2>Nu ai găsit răspunsul?</h2>
+        <p>Comunitatea RO-MESH este activă. Pune o întrebare, raportează un nod sau consultă ghidurile tehnice.</p>
+        <div class="faq-cta-actions">
+          <a href="/#protocol-quiz" class="btn-faq-primary" id="faq-cta-quiz">Găsește protocolul potrivit</a>
+          <a href="/harta.html" class="btn-faq-secondary" id="faq-cta-harta">Harta rețelei</a>
+        </div>
+      </div>
+
+    </div>
+    <!-- /faq-body -->
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="var(--color-accent)" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M2 17L12 22L22 17" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M2 12L12 17L22 12" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+            <span class="logo-text">RO-<span class="logo-accent">MESH</span></span>
+          </div>
+          <p class="footer-tagline">RO-MESH — Comunitatea rețelelor radio descentralizate din România.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Linkuri Rapide</h4>
+          <ul>
+            <li><a href="/">Acasă</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/dictionar.html">Dicționar</a></li>
+            <li><a href="/comunitati.html">Comunități</a></li>
+            <li><a href="/harta.html">Hartă</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Protocoale</h4>
+          <ul>
+            <li><a href="/meshcore/">MeshCore</a></li>
+            <li><a href="/meshtastic/">Meshtastic</a></li>
+            <li><a href="/reticulum/">Reticulum</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-info">
+          <h4>Informații</h4>
+          <p>Proiect Open-Source dedicat rezilienței.</p>
+          <p class="copyright">&copy; <span id="current-year"></span> RO-MESH. Toate drepturile rezervate.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+
+  <!-- Offline detection -->
+  <script>
+    window.addEventListener('load', () => {
+      const offlineBanner = document.getElementById('offline-banner');
+      function updateOnlineStatus() {
+        if (!navigator.onLine) {
+          offlineBanner.removeAttribute('hidden');
+        } else {
+          offlineBanner.setAttribute('hidden', '');
+        }
+      }
+      window.addEventListener('online', updateOnlineStatus);
+      window.addEventListener('offline', updateOnlineStatus);
+      updateOnlineStatus();
+    });
+  </script>
+
+  <!-- Theme toggle -->
+  <script>
+    (function () {
+      'use strict';
+      var STORAGE_KEY = 'ro-mesh-theme';
+      var html = document.documentElement;
+      var btnAuto = document.getElementById('theme-auto');
+      var btnLight = document.getElementById('theme-light');
+      var btnDark = document.getElementById('theme-dark');
+      var buttons = [btnAuto, btnLight, btnDark];
+
+      function syncButtons(activeVal) {
+        buttons.forEach(function (btn) {
+          if (!btn) return;
+          btn.setAttribute('aria-pressed', btn.dataset.themeVal === activeVal ? 'true' : 'false');
+        });
+      }
+
+      function applyTheme(themeVal) {
+        if (themeVal === 'light' || themeVal === 'dark') {
+          html.setAttribute('data-theme', themeVal);
+          try { localStorage.setItem(STORAGE_KEY, themeVal); } catch (e) { }
+        } else {
+          html.removeAttribute('data-theme');
+          try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
+        }
+        syncButtons(themeVal);
+      }
+
+      var currentTheme = html.getAttribute('data-theme') || '';
+      syncButtons(currentTheme);
+
+      buttons.forEach(function (btn) {
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          applyTheme(btn.dataset.themeVal);
+        });
+      });
+
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+          var storedTheme = '';
+          try { storedTheme = localStorage.getItem(STORAGE_KEY) || ''; } catch (e) { }
+          if (!storedTheme) { syncButtons(''); }
+        });
+      }
+    })();
+  </script>
+
+  <!-- FAQ Accordion -->
+  <script>
+    (function () {
+      var items = document.querySelectorAll('.faq-item');
+      items.forEach(function (item) {
+        var btn = item.querySelector('.faq-question');
+        if (!btn) return;
+        btn.addEventListener('click', function () {
+          var isOpen = item.classList.contains('open');
+          // Close all
+          items.forEach(function (i) {
+            i.classList.remove('open');
+            var b = i.querySelector('.faq-question');
+            if (b) b.setAttribute('aria-expanded', 'false');
+          });
+          // Toggle current
+          if (!isOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+
+</html>

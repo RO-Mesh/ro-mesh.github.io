@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.19.0
+- Added new standalone `faq.html` page with 14 questions across 4 categories: Despre RO-MESH, Tehnic, Protocoale, Comunitate.
+- "Ce este RO-MESH?" written in StoryBrand framework, connecting the RO-MESH name to RO-Alert for social recall in PARU scenarios.
+- Accordion UI with native JS (no dependencies), keyboard-accessible, dark/light theme support.
+- Added FAQ link to footer quick links in `index.html`.
+
 ## v0.18.0
 - Rewrote the "Problema & Ghid — Strategia PARU" section on the homepage for clarity and PACE plan accuracy.
 - Card P: renamed from "Plan" to "Principal", updated description to emphasize everyday communication use.
